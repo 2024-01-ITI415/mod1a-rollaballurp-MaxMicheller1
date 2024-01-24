@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 0; 
 	public TextMeshProUGUI countText;
 	public GameObject winTextObject;
+	public GameObject winTextObject2;
+
     
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
 	count = 0; 
 	SetCountText();
 	winTextObject.SetActive(false);
+	winTextObject2.SetActive(false);
+
     }
 
     void OnMove (InputValue movementValue)
@@ -37,8 +41,14 @@ public class PlayerController : MonoBehaviour
 	countText.text =  "Count: " + count.ToString();
 	if (count >= 20)
 		{
-		winTextObject.SetActive(true);
+			winTextObject.SetActive(true);
+			if (count >= 21)
+			{
+				winTextObject.SetActive(false);
+				winTextObject2.SetActive(true);
+			}
 		}
+	
 	}
 
 	private void FixedUpdate() 
